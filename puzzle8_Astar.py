@@ -90,27 +90,27 @@ def manhattan_distance(state):
 def a_star(initial_state):
     # Priority queue stores (f_cost, g_cost, state, parent_state)
     priority_queue = [(manhattan_distance(initial_state), 0, initial_state, None)]
-    visited = {initial_state: None}  # Map each state to its parent
+    explored = {initial_state: None}  # Map each state to its parent
     g_costs = {initial_state: 0}  # Cost from start to each state
 
     while priority_queue:
         # Pop the state with the lowest f-cost
         f_cost, g_cost, current_state, parent_state = heapq.heappop(priority_queue)
-        visited[current_state] = parent_state  # Record the parent for path reconstruction
+        explored[current_state] = parent_state  # Record the parent for path reconstruction
 
         # Check if we reached the goal state
         if current_state == GOAL_STATE:
             path = []
             while current_state is not None:
                 path.append(current_state)
-                current_state = visited[current_state]
-            return path[::-1] , visited # Return path from start to goal
+                current_state = explored[current_state]
+            return path[::-1] , explored # Return path from start to goal
 
         # Generate successors
         for successor in generate_children(current_state):
             successor_g_cost = g_cost + 1  # Increment cost by 1 for each move
 
-            if successor not in g_costs or successor_g_cost < g_costs[successor]:
+            if successor not in g_costs or successor_g_cost < g_costs[successor]: # adding a new element or decreasing the key 
                 # Calculate new f-cost for successor
                 g_costs[successor] = successor_g_cost
                 f_cost = successor_g_cost + manhattan_distance(successor)
@@ -123,7 +123,7 @@ def solve_puzzle(initial_state):
     path, visited_states = a_star(initial_state)
     end_time = time.time()  # End timing 
     time_cost_BFS = end_time - start_time
-    print(f"Time taken by BFS algorithm: {time_cost_BFS:.4f} seconds")
+    print(f"Time taken by A* algorithm: {time_cost_BFS:.4f} seconds")
 
     
     # path.reverse()  # Reverse the path to get it from initial to goal
