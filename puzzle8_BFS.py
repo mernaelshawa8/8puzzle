@@ -9,7 +9,7 @@ pygame.init()
 # Constants
 WIDTH, HEIGHT = 300, 300
 TILE_SIZE = WIDTH // 3
-FPS = 1  # Lower FPS for visualization of the solution
+FPS = 5  # Lower FPS for visualization of the solution
 GOAL_STATE = '012345678'
 
 # Directions for movement (Up, Down, Left, Right)
@@ -74,10 +74,9 @@ def bfs(initial_state):
         explored.add(current_state)
 
         for child in generate_children(current_state):
-            child_state = child
-            if child_state not in explored and child_state not in parent_map:
-                frontier.append(child_state)  # Add the successor state to the queue
-                parent_map[child_state] = current_state  # Map the parent state
+            if child not in explored and child not in parent_map:
+                frontier.append(child)  # Add the successor state to the queue
+                parent_map[child] = current_state  # Map the parent state
     return None, None, len(explored)  # Return None if no solution
 
 def draw(screen, state):

@@ -68,15 +68,15 @@ def dfs(initial_state):
     while frontier:
         current_state = frontier.pop()  # Lifo behavior
         if current_state == GOAL_STATE:
-            return current_state, parent_map, explored
+            return current_state, parent_map, len(explored)  # Return the goal state, parent map and number of visited states
         explored.add(current_state)
 
-        for successor in generate_children(current_state):
-            if successor not in explored and successor not in parent_map:
-                frontier.append(successor)  # Add the successor state to the stack
-                parent_map[successor] = current_state  # Map the parent state
+        for child in generate_children(current_state):
+            if child not in explored and child not in parent_map:
+                frontier.append(child)  # Add the successor state to the stack
+                parent_map[child] = current_state  # Map the parent state
 
-    return None, None, explored  # Return None if no solution
+    return None, None, len(explored)  # Return None if no solution
 
 def draw(screen, state):
     screen.fill((255, 255, 255))
@@ -113,16 +113,11 @@ def solve_puzzle(initial_state):
     path.reverse()  # Reverse the path to get it from initial to goal
     total_cost = len(path) - 1  # Cost is the number of moves
     print(f"Total cost (number of moves): {total_cost}")
-    # for state in path:
-    #     if state in visited_states:
-    #         print(f"{state} is in visited states.")
-    #     else:
-    #         print(f"{state} is NOT in visited states!")
     print("Path to the goal:")
     print(len(path))  
     depth = len(path) - 1
     print(f"Depth of the solution: {depth}")
-    print("Explored Nodes:", len(visited_states))
+    print("Explored Nodes:", visited_states)
     
     return path
 
