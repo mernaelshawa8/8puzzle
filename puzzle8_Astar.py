@@ -104,7 +104,7 @@ def a_star(initial_state):
             while current_state is not None:
                 path.append(current_state)
                 current_state = explored[current_state]
-            return path[::-1] , explored # Return path from start to goal
+            return path[::-1] , explored # Return path from start to goal, explored to count nodes
 
         # Generate successors
         for successor in generate_children(current_state):
