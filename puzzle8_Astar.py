@@ -125,26 +125,10 @@ def solve_puzzle(initial_state):
     time_cost_BFS = end_time - start_time
     print(f"Time taken by BFS algorithm: {time_cost_BFS:.4f} seconds")
 
-    # if path is None:
-    #     print("No solution found.")
-    #     return []
-
-    # # Backtrack the path from goal state the initial state
     
-    # current_state = goal_state
-
-    # while current_state is not None:
-    #     path.append(current_state)
-    #     current_state = parent_map[current_state]  # Move to the parent state
-
     # path.reverse()  # Reverse the path to get it from initial to goal
     total_cost = len(path) - 1  # Cost is the number of moves
     print(f"Total cost (number of moves): {total_cost}")
-    # for state in path:
-    #     if state in visited_states:
-    #         print(f"{state} is in visited states.")
-    #     else:
-    #         print(f"{state} is NOT in visited states!")
     print("Path to the goal:")
     print(path)  
     depth = len(path) - 1
@@ -155,10 +139,10 @@ def solve_puzzle(initial_state):
 
 def main():
     initial_state = input("Enter the initial state of the puzzle 8 numbers where 0 is the blank space: ")
-    if len(initial_state) != 9 or not all(char in '012345678' for char in initial_state):
+    while len(initial_state) != 9 or not all(char in '012345678' for char in initial_state):
         print("Enter exactly 9 digits (0-8).")
         initial_state = input("Enter the initial state of the puzzle 8 numbers where 0 is the blank space: ")
-        return
+
     inversions = count_inversions(initial_state)
     if inversions % 2 != 0:
         print("This puzzle is unsolvable (odd number of inversions).")
