@@ -9,7 +9,7 @@ pygame.init()
 # Constants
 WIDTH, HEIGHT = 300, 300
 TILE_SIZE = WIDTH // 3
-FPS = 1  # Lower FPS for visualization of the solution
+FPS = 1  
 GOAL_STATE = '012345678'
 
 # Directions for movement (Up, Down, Left, Right)
