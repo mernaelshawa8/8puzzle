@@ -166,34 +166,3 @@ if __name__ == "__main__":
     main()
 
 
-# def bfs(initial_state):
-#     queue = [(initial_state, None)]  # Queue stores (state, parent_state)
-#     visited = {initial_state: None}  # Maps state to its parent state
-
-#     while queue:
-#         current_state, parent_state = queue.pop(0)  # FIFO
-
-#         # Record the current state as visited
-#         visited[current_state] = parent_state  # Store the parent state
-
-#         # Check if the goal state is reached
-#         if current_state == GOAL_STATE:
-#             print('Entered goal state, current state = ', current_state)
-#             path = []
-#             # Trace back from the goal to the initial state
-#             while current_state is not None:  # Stop at initial state
-#                 path.append(current_state)
-#                 if len(visited[current_state]):
-#                   current_state = visited[current_state]  # Follow parent link
-#             return path[::-1]  # Reverse to get path from start to goal
-
-#         # Generate successors
-#         for successor in generate_children(current_state):
-#             if successor not in visited:
-#                 # Enqueue the successor with the current state
-#                 queue.append((successor, current_state))  # Store the current state as parent
-
-#         print('Visited = ', visited)
-#         print('Queue = ', queue)
-
-#     return None  # No solution found
