@@ -62,8 +62,7 @@ def generate_children(state):
 
 
 
-def ids(initial_state):
-    start_time = time.time()  # Start timing 
+def ids(initial_state): 
     depth_limit = 0  # Initial depth limit
 
     while True:
@@ -76,10 +75,6 @@ def ids(initial_state):
             current_state, current_depth = frontier.pop()
 
             if current_state == GOAL_STATE:
-                end_time = time.time()  # End timing 
-                time_cost_BFS = end_time - start_time
-                # print("time_cost_BFS =", time_cost_BFS)
-                # print("length of the explored nodes =", len(explored))
                 return current_state, parent_map,len(explored)
 
 
