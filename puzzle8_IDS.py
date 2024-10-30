@@ -112,8 +112,8 @@ def solve_puzzle(initial_state):
     start_time = time.time()  # Start timing 
     goal_state, parent_map, visited_states = ids(initial_state)
     end_time = time.time()  # End timing 
-    time_cost_BFS = end_time - start_time
-    print(f"Time taken by BFS algorithm: {time_cost_BFS:.4f} seconds")
+    time_cost_IDS = end_time - start_time
+    print(f"Time taken by IDS algorithm: {time_cost_IDS:.4f} seconds")
 
     if goal_state is None:
         print("No solution found.")
