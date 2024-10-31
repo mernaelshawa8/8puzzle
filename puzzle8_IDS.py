@@ -64,6 +64,7 @@ def generate_children(state):
 
 def ids(initial_state): 
     depth_limit = 0  # Initial depth limit
+    number_of_explored_nodes = 0
 
     while True:
         frontier = [(initial_state, 0)]  # (state, current depth)
@@ -75,7 +76,8 @@ def ids(initial_state):
             current_state, current_depth = frontier.pop()
 
             if current_state == GOAL_STATE:
-                return current_state, parent_map,len(explored)
+                
+                return current_state, parent_map,(number_of_explored_nodes + len(explored))
 
 
             # Only expand if within the current depth limit
@@ -87,6 +89,7 @@ def ids(initial_state):
                         frontier.append((successor, current_depth + 1))
                         parent_map[successor] = current_state
 
+        number_of_explored_nodes += len(explored)
         # Increment depth limit for the next iteration of IDS
         depth_limit += 1
 
@@ -172,5 +175,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 
